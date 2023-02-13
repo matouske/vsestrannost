@@ -5,75 +5,174 @@
     <meta name="generator" content="PSPad editor, www.pspad.com">                      
     <title>Přihlašování všestrannost 2023                    
     </title>              
-  </head>              
-  <body>     <h1>Sportovní všestrannost 2023 - přihlášky</h1>                           
-    <br> 
+  </head>
+  <style>
+  fieldset{font-weight: bold;
+           font-size: large;
+           margin-top: 25px;}
+  
+  </style>              
+  <body>                                
+    <form id="prihlasky" name="prihlasky">
+      <h1>Sportovní všestrannost 2023 - přihlášky</h1>
+      <!-- Informace o zupe a jednote -->
+        <table border="0">
+          <tr><td>Župa:</td><td><select name="zupa" id="zupa" onchange='addJednota()'>
+                                  <option id="zupaDISABLE">--vyber--</option>
+                                  <option>01 - Jana Podlipného</option>
+                                  <option>03 - Podbělohorská</option>
+                                  <option>05 - Pražská-Scheinerova</option>
+                                </select></td></tr>
+          <tr><td>Jednota:</td><td><select name="jednota" id="jednota"></select></td></tr>
+        </table>
+        
+      <!-- Informace o vedoucim druzstva -->
+      <fieldset>
+        <legend>Vedoucí družstva</legend>
+        <table border="0">
+          <tr><td>Jméno a příjmení:</td><td><input type="text" id="VDjmeno" name="VDjmeno"></td></tr>
+          <tr><td>E-mail:</td><td><input type="email" id="VDemail" name="VDemail"></td></tr>
+          <tr><td>Telefon:</td><td><input type="text" id="VDtelefon" name="VDtelefon"  maxlength="9" size="9" placeholder="123456789"></td></tr>
+        </table>
+      </fieldset>
+      
+      <!-- Zapisovani zavodniku -->
+      <fieldset>
+        <legend>Závodníci</legend>
+        <table id="zavodnici" >
+          <tr align="center"><td>Příjmení</td><td>Jméno</td><td>Kategorie</td><td>Rok narození</td><td>Plavání</td><td>Gymnastika</td><td>Šplh</td><td>Atletika</td><td>Ostaršení</td></tr>
+          <tr><td><input type="text" id="prijmeni1" name="prijmeni"></td>
+              <td><input type="text" id="jmeno1" name="jmeno"></td>
+              <td><select id="kat1" name="kat" onchange='addRokNar("1")'></select></td>
+              <td id="rok1"></td>
+              <td align="center" ><input type="checkbox" id="plavani1" name="plavani"></td>
+              <td align="center"><input type="checkbox" id="gym1" name="gym"></td>
+              <td align="center"><input type="checkbox" id="splh1" name="splh"></td>
+              <td align="center"><input type="checkbox" id="atletika1" name="atletika"></td>
+              <td><input type="checkbox" id="ostarseni1" name="ostarseni">ostaršit</td></tr>
+          <tr><td><input type="text" id="prijmeni2" name="prijmeni"></td>
+              <td><input type="text" id="jmeno2" name="jmeno"></td>
+              <td><select id="kat2" name="kat" onchange='addRokNar("2")'></select></td>
+              <td id="rok2"></td>
+              <td align="center"><input type="checkbox" id="plavani2" name="plavani"></td>
+              <td align="center"><input type="checkbox" id="gym2" name="gym"></td>
+              <td align="center"><input type="checkbox" id="splh2" name="splh"></td>
+              <td align="center"><input type="checkbox" id="atletika2" name="atletika"></td>
+              <td><input type="checkbox" id="ostarseni2" name="ostarseni">ostaršit</td></tr>
+          <tr><td><input type="text" id="prijmeni3" name="prijmeni3"></td>
+              <td><input type="text" id="jmeno3" name="jmeno3"></td>
+              <td><select id="kat3" name="kat" onchange='addRokNar("3")'></select></td>
+              <td id="rok3"></td>
+              <td align="center"><input type="checkbox" id="plavani3" name="plavani"></td>
+              <td align="center"><input type="checkbox" id="gym3" name="gym"></td>
+              <td align="center"><input type="checkbox" id="splh3" name="splh"></td>
+              <td align="center"><input type="checkbox" id="atletika3" name="atletika"></td>
+              <td><input type="checkbox" id="ostarseni3" name="ostarseni">ostaršit</td></tr> 
+          <tr><td><input type="text" id="prijmeni4" name="prijmeni3"></td>
+              <td><input type="text" id="jmeno4" name="jmeno3"></td>
+              <td><select id="kat4" name="kat" onchange='addRokNar("3")'></select></td>
+              <td id="rok4"></td>
+              <td align="center"><input type="checkbox" id="plavani4" name="plavani"></td>
+              <td align="center"><input type="checkbox" id="gym4" name="gym"></td>
+              <td align="center"><input type="checkbox" id="splh4" name="splh"></td>
+              <td align="center"><input type="checkbox" id="atletika4" name="atletika"></td>
+              <td><input type="checkbox" id="ostarseni4" name="ostarseni">ostaršit</td></tr>
+        </table>      
+      </fieldset>                                       
+     
+      
+      <!-- Zapis organizatoru -->
+      <fieldset>
+        <legend>Organizátoři, rozhodčí a pomahatelé</legend>
+        <table border="0">
+          <tr align="center"><td>Jméno a příjmení</td><td>E-mail</td><td>Telefon</td><td>Funkce</td><td>Plavání vč. disciplíny</td><td>Gymnastika a šplh vč. disciplíny</td><td>Atletika vč, disciplíny</td></tr>
+          <tr><td><input type="text" id="ROjmeno1" name="ROjmeno"></td>
+              <td><input type="email" id="ROemail1" name="ROemail"></td>
+              <td><input type="text" id="ROtelefon1" name="ROtelefon" maxlength="9" size="9" placeholder="123456789"></td>
+              <td><select name="ROfce" id="ROfce1"></select></td>
+              <td align="center"><input type="checkbox" id="ROplavani1" name="plavani"><input type="text" id="ROplavaniDisciplina" name="ROplavaniDisciplina" placeholder="měření času"></td>
+              <td align="center"><input type="checkbox" id="ROgym1" name="gym"><input type="text" id="ROgymDisciplina" name="ROgymDisciplina" placeholder="hrazda"></td>
+              <td align="center"><input type="checkbox" id="ROatletika1" name="atletika"><input type="text" id="ROatletikaDisciplina" name="ROatletikaDisciplina" placeholder="skok"></td></tr>
+          <tr><td><input type="text" id="ROjmeno2" name="ROjmeno"></td>
+              <td><input type="email" id="ROemail2" name="ROemail"></td>
+              <td><input type="text" id="ROtelefon2" name="ROtelefon" maxlength="9" size="9" placeholder="123456789"></td>
+              <td><select name="ROfce" id="ROfce2"></select></td>
+              <td align="center"><input type="checkbox" id="ROplavani2" name="plavani"><input type="text" id="ROplavaniDisciplina" name="ROplavaniDisciplina" placeholder="měření času"></td>
+              <td align="center"><input type="checkbox" id="ROgym2" name="gym"><input type="text" id="ROgymDisciplina" name="ROgymDisciplina" placeholder="hrazda"></td>
+              <td align="center"><input type="checkbox" id="ROatletika2" name="atletika"><input type="text" id="ROatletikaDisciplina" name="ROatletikaDisciplina" placeholder="skok"></td></tr>
+        </table>
+                 
+      </fieldset>
+      
+      <!-- Odeslání formuláře -->  
+        <table>
+        <tr><td><button type="button" onclick="validate()" id="kontrola">Zkontrolovat</button></td>
+            <td><button id="submit">Odeslat</button></td></tr> 
+        </table>  
+    </form>
     
-    ID implementace: AKfycbzEny59cP8skFDS-rz09DOwRJkPox8zaS2W0x8nubeExVHdU4TTPHSkoRx_ZEzWDP5OYg 
-    <br>
-    URL: https://script.google.com/macros/s/AKfycbzEny59cP8skFDS-rz09DOwRJkPox8zaS2W0x8nubeExVHdU4TTPHSkoRx_ZEzWDP5OYg/exec
-    
-    <form id="form">                                 
-      <fieldset>                                         
-        <legend>Obecné informace                                    
-        </legend>                                         
-        <table>                                                 
-          <tr><td>           Župa:</td> <td>                                                              
-              <select name="zupa" required>                                                                        
-                <option value="z01">01 - Jana Podlipného                                                                    
-                </option>                                                                        
-                <option value="z03">03 - Podbělohorská                                                                    
-                </option>                                                                        
-                <option value="z05">05 - Pražská-Scheinerova                                                                    
-                </option>                                                                
-              </select>    </td>                                           
-          </tr>                                                
-          <tr><td>    Jednota:</td> <td>                                                             
-              <input type="text" name="jednota"></td>            
-          </tr>                                        
-        </table>                                
-      </fieldset>  
-      <br>
-      <fieldset>                                             
-      <legend>Kontaktní osoba                                
-      </legend>               
-      <table border="0">                   
-        <tr><td>Jméno a příjmení:</td><td>            
-            <input type="text" name="KO_jmeno"></td>        
-        </tr>                  
-        <tr><td>E-mail:</td><td>            
-            <input type="text">  </td>        
-        </tr>                   
-        <tr><td>Telefon:</td><td>            
-            <input type="text"> </td>        
-        </tr>               
-      </table>               
-                            
-      </fieldset> 
-      <br>                    
-      <button type="submit" id="submit"> Odeslat </button>                                
-    </form>    
     <script>
-   const form = document.querySelector("#form")
-   const submitButton = document.querySelector("#submit")
-   const scriptURL = 'https://script.google.com/macros/s/AKfycbzEny59cP8skFDS-rz09DOwRJkPox8zaS2W0x8nubeExVHdU4TTPHSkoRx_ZEzWDP5OYg/exec'
-
-   form.addEventListener('submit', e => {
-     submitButton.disabled = true
-     e.preventDefault()
-     let requestBody = new FormData(form)
-     fetch(scriptURL, { method: 'POST', body: requestBody})
-       .then(response => {
-          alert('Success!', response)
-          submitButton.disabled = false
-         })
-       .catch(error => {
-       alert('Error!', error.message)
-         submitButton.disabled = false
-
-       }
-       )
-   })
-</script>
+        var numZavodnici = 4;
+        var numOrganizatori = 2;
+        
+        for(i = 1; i <= numZavodnici; i++){
+            document.getElementById("kat"+i.toString()).innerHTML = "<option id='katDISABLE'>--vyber--</option><option>žákyně I</option><option>žákyně II</option><option>žákyně III</option><option>žákyně IV</option><option>dorky</option><option>ženy</option><option>žáci I</option><option>žáci II</option><option>žáci III</option><option>žáci IV</option><option>dorci</option><option>muži</option>";
+        } 
+        for(i = 1; i <= numOrganizatori; i++){
+            document.getElementById("ROfce"+i.toString()).innerHTML = "<option>Rozhodčí</option><option>Organizátor</option><option>Pomahatel</option>";
+        }
+        
+        function addJednota(){
+          var zupa = document.getElementById("zupa").value;
+          var jednota = document.getElementById("jednota");
+          if (zupa == "01 - Jana Podlipného"){
+              jednota.innerHTML = "<option>Libeň</option><option>Libuš</option><option>Prosek</option><option>St.Město</option><option>Štěrboholy</option><option>Vinohrady</option><option>Vršovice</option>";   
+          } else if (zupa == "03 - Podbělohorská"){
+              jednota.innerHTML = "<option>Břevnov</option><option>Čimice</option><option>Dejvice</option><option>Hanspaulka</option><option>Hlubočepy</option><option>Chuchle</option><option>Praha VII</option>";
+          } else {
+              jednota.innerHTML = "<option>Braník</option><option>Hodkovičky</option><option>Kunratice</option><option>Nusle</option><option>Radotín</option><option>Spořilov</option><option>Vyšehrad</option><option>Zbraslav</option><option>Zlíchov</option>";
+          }
+          document.getElementById("zupaDISABLE").disabled = "disabled";
+        }
+        
+        function addRokNar(i){ 
+          var rok = document.getElementById("rok"+i);
+          var kat = document.getElementById("kat"+i).value;
+          
+          if (kat == "žákyně I" || kat == "žáci I"){
+              rok.innerHTML= "<select id='rokNar" + i + "' name='rokNar'><option>2014</option><option>2015</option><option>2016</option><option>2017</option></select>";
+          } else if (kat == "žákyně II" || kat == "žáci II") {
+              rok.innerHTML= "<select id='rokNar" + i + "' name='rokNar'><option>2012</option><option>2013</option><option>2014</option></select>";
+          } else if (kat == "žákyně III" || kat == "žáci III") {
+              rok.innerHTML= "<select id='rokNar" + i + "' name='rokNar'><option>2010</option><option>2011</option><option>2012</option></select>";
+          } else if (kat == "žákyně IV" || kat == "žáci IV") {
+              rok.innerHTML= "<select id='rokNar" + i + "' name='rokNar'><option>2008</option><option>2009</option><option>2010</option></select>";
+          } else if (kat == "dorky" || kat == "dorci") {
+              rok.innerHTML= "<select id='rokNar" + i + "' name='rokNar'><option>2005</option><option>2006</option><option>2007</option><option>2008</option></select>";
+          } else {
+              rok.innerHTML= "<input type='text' id='rokNar" + i + "' name='rokNar' maxlength='4' size='4' min='1900' max='2005' autocomplete='off'>";
+          }
+          document.getElementById("katDISABLE").disabled = "disabled";
+        }        
+    
+        function validate(){
+          var kontrola = "";
+          var prihlasitOrganizatoru = 0;
+          var pocetOrganizatoru = 0; 
+          
+          while(document.getElementById("prijmeni"+(prihlasitOrganizatoru+1).toString()).value != ""){
+              prihlasitOrganizatoru += 1;
+          }
+          kontrola += "\nPocet zavodniku: " + prihlasitOrganizatoru.toString();
+          kontrola += "\nPocet organizatoru k prihlaseni: " + (Math.ceil(prihlasitOrganizatoru/2)).toString();
+          
+          while(document.getElementById("ROjmeno"+(pocetOrganizatoru+1).toString()).value != ""){
+              pocetOrganizatoru += 1;
+          }
+                    kontrola += "\nPocet prihlasenych organizatoru: " + pocetOrganizatoru.toString();
+          alert(kontrola); 
+        }
+    </script>
+                                              
   </body>
 </html>
